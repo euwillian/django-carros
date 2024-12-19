@@ -1,6 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponse
 
 
 def cars_views(request):
-    return HttpResponse("Meus Carros")
+    return render(request=request, template_name='cars.html')
