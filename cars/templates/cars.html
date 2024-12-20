@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <title>Carros</title>
-</head>
-{% block content %}
-<body>
-    <h1>Todos os carros</h1>
-    <h3>Carros: {{ cars.model }}</h3>
-</body>
-{% endblock %}
+    <head>
+        <title>Carros</title>
+    </head>
+    {% block content %}
+        <body>
+            <h1>Todos os carros</h1>
+            {% for car in cars %}
+                <h3>{{ car.brand }} - {{ car.model }} - {{ car.factory_year }}</h3>
+            {% endfor %}
+        </body>
+    {% endblock %}
 </html>
