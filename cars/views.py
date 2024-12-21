@@ -3,15 +3,13 @@ from cars.models import Car
 # importa meu model
 
 def cars_views(request):
-    
     search = request.GET.get('search')
     # captura a request digitada na url: /cars/?search=Fox
     
     # cars = Car.objects.filter(brand=2)
     # cars = Car.objects.filter(brand__name="Fiat")
-    cars = Car.objects.filter(model__contains=search)
+    cars = Car.objects.filter(model__contains=search) if search else Car.objects.all()
     # Campo__função
-    #cars = Car.objects.all()
     # cars = Car.object.all()
     # retonar um QuerySet
     # select * from cars, seria basicamente essa sintaxe
