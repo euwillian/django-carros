@@ -8,7 +8,7 @@ def cars_views(request):
     
     # cars = Car.objects.filter(brand=2)
     # cars = Car.objects.filter(brand__name="Fiat")
-    cars = Car.objects.filter(model__contains=search) if search else Car.objects.all()
+    cars = Car.objects.filter(model__icontains=search).order_by('model') if search else Car.objects.all().order_by('-model')
     # Campo__função
     # cars = Car.object.all()
     # retonar um QuerySet
