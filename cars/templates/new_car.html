@@ -3,8 +3,13 @@
 {% block content  %}
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %} 
-        <!– Middleware de proteção ->
-        {{ new_car_form }}
-        <!– chamando o formulário ->
+        {% comment %} Middleware de proteção {% endcomment %}
+        <table>
+            {{ new_car_form.as_table }}
+        </table>
+        {% comment %} chamando o formulário, renderizar, o as_p coloca paragrafos, as_table alinha em tabulação {% endcomment %}
+
+        <input type="submit" value="Cadastrar" class="btn btn-primary">
+
     </form>
 {% endblock %}
