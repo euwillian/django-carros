@@ -1,6 +1,7 @@
 from django.shortcuts import render
-from cars.models import Car 
-# importa meu model
+from cars.models import Car
+from cars.forms import CarForm
+# importa meu model, forms, views etc
 
 def cars_views(request):
     search = request.GET.get('search')
@@ -23,4 +24,8 @@ def cars_views(request):
 
 
 def new_car_view(request):
-    return "Novo carro!"
+    new_car_form = CarForm()
+    return render(
+        request=request,
+        template_name='new_car.html', 
+        context={'new_car_form': new_car_form})

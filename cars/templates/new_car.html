@@ -2,7 +2,9 @@
 
 {% block content  %}
     <form method="post" enctype="multipart/form-data">
-        {% csrf_token %} #Middleware de proteção
-        
+        {% csrf_token %} 
+        <!– Middleware de proteção ->
+        {{ new_car_form }}
+        <!– chamando o formulário ->
     </form>
 {% endblock %}
