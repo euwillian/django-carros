@@ -20,3 +20,7 @@ def cars_views(request):
         template_name='cars.html', 
         context= {'cars': cars }
         )
+
+
+def new_car_view(request):
+    return "Novo carro!"
