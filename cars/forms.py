@@ -21,5 +21,6 @@ class CarForm(forms.Form):
             value=self.cleaned_data['value'],
             photo=self.cleaned_data['photo'],
         )
+
         car.save()
         return car
