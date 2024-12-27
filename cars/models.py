@@ -1,5 +1,6 @@
 from django.db import models
 
+
 class Brand(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=50)
@@ -18,6 +19,7 @@ class Car(models.Model):
     plate = models.CharField(max_length=10, blank=True, null=True)
     value = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True)
     photo = models.ImageField(upload_to='cars/', blank=True, null=True)
+
     # tem dependencia da biblioteca Python -m install Pillow (manipular imagens)
 
     def __str__(self):
