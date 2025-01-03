@@ -31,4 +31,17 @@ class CarModelForm(forms.ModelForm):
     class Meta:
         model = Car
         fields = '__all__' #dunder all, irá considerar todos os campos do Model car
+
+    def clean_value(self):
+        # Django entende que essa é a forma de validação clean_nome_do_campo
+        value = self.cleaned_data.get('value') # captura o valor que o usuário informou no form
+        if value < 5000:
+            self.add_error('value', "Erro: Valor mínimo do carro deve ser de R$ 5.000,00.")
+        return value
     
+    def clean_factory_year(self):
+        factory_year = self.cleaned_data.get('factory_year')
+        if factory_year < 2000:
+            self.add_error('factory_year', 'Erro: ano de fabricação mínimo deve ser acima de 2000.')
+        return factory_year
+        
