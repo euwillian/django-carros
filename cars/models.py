@@ -17,7 +17,7 @@ class Car(models.Model):
     factory_year = models.IntegerField(blank=True, null=True)
     model_year = models.IntegerField(blank=True, null=True)
     plate = models.CharField(max_length=10, blank=True, null=True)
-    value = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True)
+    value = models.DecimalField(max_digits=10, decimal_places=2, blank=False, null=False)
     photo = models.ImageField(upload_to='cars/', blank=False, null=False)
 
     # tem dependencia da biblioteca Python -m install Pillow (manipular imagens)

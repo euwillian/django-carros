@@ -35,6 +35,7 @@ class CarModelForm(forms.ModelForm):
     def clean_value(self):
         # Django entende que essa é a forma de validação clean_nome_do_campo
         value = self.cleaned_data.get('value') # captura o valor que o usuário informou no form
+        
         if value < 5000:
             self.add_error('value', "Erro: Valor mínimo do carro deve ser de R$ 5.000,00.")
         return value
