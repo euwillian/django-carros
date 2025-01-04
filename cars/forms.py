@@ -44,4 +44,11 @@ class CarModelForm(forms.ModelForm):
         if factory_year < 2000:
             self.add_error('factory_year', 'Erro: ano de fabricação mínimo deve ser acima de 2000.')
         return factory_year
+    
+    # def clean_photo(self):
+    #     Este trecho não é mais obrigatório pois, alteramos diretamente o models.py para não aceitar null na foto.
+    #     photo = self.cleaned_data.get('photo')
         
+    #     if photo is None:
+    #         self.add_error('photo', "Erro: Não é possível gravar sem uma foto!")
+    #     return photo
