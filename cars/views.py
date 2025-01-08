@@ -50,7 +50,10 @@ class CarsListView(ListView):
     def get_queryset(self):
         search = self.request.GET.get('search', '').strip()
         cars = super().get_queryset().order_by('model')
-        
+#       super().get_queryset() chama a implementação padrão do ListView para obter todos os objetos do modelo Car.
+#       O .order_by('model') organiza os carros por ordem crescente do campo model
+#       É necessário pois, por padrão sempre a busca do django faz .all()        
+
         if search:
             cars = cars.filter(model__icontains=search)
         
