@@ -29,7 +29,7 @@ from django.views import View
 class CarsView(View):
     
     def get(self, request):
-            
+
         search = request.GET.get('search')
         cars = Car.objects.filter(model__icontains=search).order_by('model') if search else Car.objects.all().order_by(
         '-model')
@@ -41,22 +41,38 @@ class CarsView(View):
     )
 
 
+# def new_car_view(request):
+#     if request.method == "POST":
+#         # envia o formulário para enviar ao banco de dados
+#         # irá capturar os dados e arquivos enviados via POST
+#         new_car_form = CarModelForm(request.POST, request.FILES)
+#         # print(new_car_form.data)
+#         if new_car_form.is_valid():
+#             # verifica se os dados são válidos
+#             new_car_form.save()
+#             return redirect('cars_list')
+#     else:
+#         # retorna a página padrão, para o usuário preencher
+#         new_car_form = CarModelForm()
 
-def new_car_view(request):
-    if request.method == "POST":
-        # envia o formulário para enviar ao banco de dados
-        # irá capturar os dados e arquivos enviados via POST
+#     return render(
+#         request=request,
+#         template_name='new_car.html',
+#         context={'new_car_form': new_car_form})
+
+
+class NewCarView(View):
+    
+    def get(self, request):
+        new_car_form = CarModelForm()
+        return render(
+            request=request,
+            template_name='new_car.html',
+            context={'new_car_form': new_car_form})
+        
+        
+    def post(self, request):
         new_car_form = CarModelForm(request.POST, request.FILES)
-        # print(new_car_form.data)
         if new_car_form.is_valid():
-            # verifica se os dados são válidos
             new_car_form.save()
             return redirect('cars_list')
-    else:
-        # retorna a página padrão, para o usuário preencher
-        new_car_form = CarModelForm()
-
-    return render(
-        request=request,
-        template_name='new_car.html',
-        context={'new_car_form': new_car_form})
