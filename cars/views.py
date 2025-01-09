@@ -1,8 +1,9 @@
-from django.shortcuts import render, redirect
+# from django.shortcuts import render, redirect
+# from django.views import View
 from cars.models import Car
 from cars.forms import CarModelForm
-from django.views import View
-from django.views.generic import ListView, CreateView
+from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView
+from django.urls import reverse_lazy
 
 # importa meu model, forms, views etc
 
@@ -103,6 +104,16 @@ class NewCarCreateView(CreateView):
     model = Car
     form_class = CarModelForm
     template_name = 'new_car.html'
-    success_url = '/cars_list/'
+    success_url = reverse_lazy('cars_list')
+    
     # no caso do render que usava new_car_form lá no html, basta trocar por form.as_table 
-    # caso contrário é necessário personalizar       
+    # caso contrário é necessário personalizar  
+    #
+    # Usar o reverse_lazy() é preferível ao hardcode da URL ('/cars/'), 
+    # porque ele respeita o nome das URLs definidas no urls.py. Isso torna o código mais robusto e 
+    # fácil de manter.     
+    
+class CarDetailView(DetailView):
+    model = Car
+    template_name = 'car_detail.html'   
+    
