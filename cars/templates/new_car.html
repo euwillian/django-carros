@@ -5,7 +5,7 @@
         {% csrf_token %} 
         {% comment %} Middleware de proteção {% endcomment %}
         <table>
-            {{ new_car_form.as_table }}
+            {{ form.as_table }}
         </table>
         {% comment %} chamando o formulário, renderizar, o as_p coloca paragrafos, as_table alinha em tabulação {% endcomment %}
 

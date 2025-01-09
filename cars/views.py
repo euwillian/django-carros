@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from cars.models import Car
 from cars.forms import CarModelForm
 from django.views import View
-from django.views.generic import ListView
+from django.views.generic import ListView, CreateView
 
 # importa meu model, forms, views etc
 
@@ -79,22 +79,30 @@ class CarsListView(ListView):
 #         context={'new_car_form': new_car_form})
 
 
-class NewCarView(View):
+# class NewCarView(View):
     
-    def get(self, request):
-        new_car_form = CarModelForm()
-        return render(
-            request=request,
-            template_name='new_car.html',
-            context={'new_car_form': new_car_form})
+#     def get(self, request):
+#         new_car_form = CarModelForm()
+#         return render(
+#             request=request,
+#             template_name='new_car.html',
+#             context={'new_car_form': new_car_form})
         
         
-    def post(self, request):
-        new_car_form = CarModelForm(request.POST, request.FILES)
-        if new_car_form.is_valid():
-            new_car_form.save()
-            return redirect('cars_list')
-        return render(
-            request=request,
-            template_name='new_car.html',
-            context={'new_car_form': new_car_form})    
+#     def post(self, request):
+#         new_car_form = CarModelForm(request.POST, request.FILES)
+#         if new_car_form.is_valid():
+#             new_car_form.save()
+#             return redirect('cars_list')
+#         return render(
+#             request=request,
+#             template_name='new_car.html',
+#             context={'new_car_form': new_car_form})    
+        
+class NewCarCreateView(CreateView):
+    model = Car
+    form_class = CarModelForm
+    template_name = 'new_car.html'
+    success_url = '/cars_list/'
+    # no caso do render que usava new_car_form lá no html, basta trocar por form.as_table 
+    # caso contrário é necessário personalizar       
