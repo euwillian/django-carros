@@ -117,3 +117,10 @@ class CarDetailView(DetailView):
     model = Car
     template_name = 'car_detail.html'   
     
+
+class CarUpdateView(UpdateView):
+    model = Car
+    form_class = CarModelForm
+    template_name = 'car_update.html'
+    success_url = reverse_lazy('cars_list')
+    
