@@ -29,6 +29,7 @@ class Car(models.Model):
 
 class CarInventory(models.Model):
     id = models.AutoField(primary_key=True)
+    # não é necessário criar o campo ID, o django cria automático
     cars_count = models.IntegerField(blank=False, null=False)   
     cars_value = models.DecimalField(max_digits=10, decimal_places=2, blank=False, null=False)
     created_at = models.DateTimeField(auto_now_add=True)
