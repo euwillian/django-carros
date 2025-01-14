@@ -25,3 +25,18 @@ class Car(models.Model):
     def __str__(self):
         """Funcao padrao de Model que retorna "Car object (1)", subscrevemos"""
         return self.model
+
+
+class CarInventory(models.Model):
+    id = models.AutoField(primary_key=True)
+    cars_count = models.IntegerField(blank=False, null=False)   
+    cars_value = models.DecimalField(max_digits=10, decimal_places=2, blank=False, null=False)
+    created_at = models.DateTimeField(auto_now_add=True)
+    
+    class Meta:
+        ordering = ['-id']
+        # Dessa forma ao buscar no banco de dados irá ordenar de forma decrescente (usando o menos -)
+    
+    
+    def __str___(self):
+        return f'{self.cars_count} - {self.cars_value}'
