@@ -2,7 +2,7 @@ from django.db.models.signals import pre_save, pre_delete, post_save, post_delet
 from django.dispatch import receiver
 from cars.models import Car, CarInventory
 from django.db.models import Sum
-
+from gemini_api.client import get_car_ai_bio
 
 # @receiver(pre_save, sender=Car)
 # def car_pre_save(sender, instance, **kwargs):
@@ -35,7 +35,17 @@ def car_post_save(sender, instance, **kwargs):
 def car_post_delete(sender, instance, **kwargs):
     # Função após excluir um carro
     car_inventory_update()
-    
+
+
+@receiver(pre_save, sender=Car)
+def car_pre_save(sender, instance, **kwargs):
+    # Antes de salvar o carro
+    if not instance.bio:
+        ai_bio = get_car_ai_bio(instance.model, instance.brand, instance.model_year)
+        # Irá usar o gemini para criar a bio automaticamente!
+        
+        instance.bio = ai_bio
+
 
 # @receiver(pre_delete, sender=Car)
 # def car_pre_delete(sender, instance, **kwargs):
