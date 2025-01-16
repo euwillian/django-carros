@@ -19,6 +19,7 @@ class Car(models.Model):
     plate = models.CharField(max_length=10, blank=True, null=True)
     value = models.DecimalField(max_digits=10, decimal_places=2, blank=False, null=False)
     photo = models.ImageField(upload_to='cars/', blank=False, null=False)
+    bio = models.TextField(blank=True, null=True, max_length=120)
 
     # tem dependencia da biblioteca Python -m install Pillow (manipular imagens)
 
