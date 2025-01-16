@@ -18,10 +18,9 @@ def car_inventory_update():
     cars_count = Car.objects.all().count()
     # irá retornar a quantidade de registros no banco de dados
     cars_value = Car.objects.aggregate(
-        total_value=SUM('value')
+        total_value=Sum('value')
     )['total_value']
     # Irá somar todos os valores do campo value, se não colocar ['total_value'] retorna um dict
-    
     CarInventory.objects.create(cars_count=cars_count, cars_value=cars_value)
     # Insert no banco de dados -> persistir
     

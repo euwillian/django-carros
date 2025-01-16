@@ -39,5 +39,6 @@ class CarInventory(models.Model):
         # Dessa forma ao buscar no banco de dados irá ordenar de forma decrescente (usando o menos -)
     
     
-    def __str___(self):
+    def __str__(self):
         return f'{self.cars_count} - {self.cars_value}'
+    
