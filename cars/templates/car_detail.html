@@ -87,13 +87,14 @@
     <p><strong>Placa:</strong> {{ object.plate }}</p>
     <p><strong>Preço:</strong> R$ {{ object.value }}</p>
     {% if object.bio %}
-      <p><strong>Bio:</strong> {{ object.bio }}</p>
+      <p><strong>Bio:</strong> {{ object.bio }}</p> 
     {% endif %}
   </div>
-  {% if user.is_authenticated %}
+  {% comment %} {% if user.is_authenticated %} {% endcomment %}
+  {% comment %} Se o usuário estiver logado, irá apresentar os botões abaixo {% endcomment %}
     <div class="buttons-container">
       <a href="{% url 'car_update' pk=object.pk %}" class="btn btn-primary">Editar</a>
       <a href="{% url 'car_delete' pk=object.pk %}" class="btn btn-danger">Excluir</a>
     </div>
-  {% endif %}
+  {% comment %} {% endif %} {% endcomment %}
 {% endblock %}
